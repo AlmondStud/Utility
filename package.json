@@ -1,0 +1,14 @@
+{
+  "name": "com.almond.utility",
+  "version": "0.0.1",
+  "displayName": "Almond's utility",
+  "description": "Utility functions",
+  "keywords": [
+    "almond",
+    "utility"
+  ],
+  "author": {
+    "name": "Almond",
+    "email": "gooldare@naver.com"
+  }
+}
