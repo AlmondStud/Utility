@@ -60,5 +60,13 @@ namespace Almond {
 
 			return pointQueue.Dequeue();
 		}
+
+		public static List<Vector3> GetBezierLinePoints(List<Vector3> points, int splitCount) {
+			var list = new List<Vector3>();
+			for(int i = 0; i <= splitCount; i++) {
+				list.Add(CalculateBezierPoint(((float)i / splitCount),points));
+			}
+			return list;
+		}
 	}
 }

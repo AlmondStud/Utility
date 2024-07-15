@@ -8,9 +8,7 @@ namespace Almond {
 	public static class CubicSpline {
 		private static int LineStepCount = 100;
 
-		public static List<Vector2> CalculateSpline(List<Vector2> points) {
-			return new CubicSplineData().FitAndEval(points);
-		}
+		public static List<Vector2> CalculateSpline(List<Vector2> points, int splitCount = 100) => new CubicSplineData().FitAndEval(points, splitCount);		
 		public class CubicSplineData {
 			#region Fields
 
@@ -44,9 +42,9 @@ namespace Almond {
 			#endregion
 
 			#region Fit*
-			public List<Vector2> FitAndEval(List<Vector2> points, float startSlope = float.NaN, float endSlope = float.NaN, bool debug = false) {
+			public List<Vector2> FitAndEval(List<Vector2> points, int splitCount = 100, float startSlope = float.NaN, float endSlope = float.NaN) {
 				Fit(points, startSlope, endSlope);
-				return Eval();
+				return Eval(splitCount);
 			}
 			public void Fit(List<Vector2> points, float startSlope = float.NaN, float endSlope = float.NaN) {
 				if(float.IsInfinity(startSlope) || float.IsInfinity(endSlope)) {
@@ -112,7 +110,7 @@ namespace Almond {
 			#endregion
 
 			#region Eval*
-			public List<Vector2> Eval() {
+			public List<Vector2> Eval(int splitCount) {
 				var returnPoints = new List<Vector2>();
 				var stepSize = (pointOrigin[^1].x - pointOrigin[0].x) / (LineStepCount - 1);
 
